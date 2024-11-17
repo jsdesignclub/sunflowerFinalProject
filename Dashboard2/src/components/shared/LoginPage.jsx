@@ -56,7 +56,7 @@ const LoginPage = () => {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 p-4">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-blue-600">
-          {isRegistering ? 'Create Account' : 'Welcome Back'}
+          {isRegistering ? 'Create Account' : 'Welcome Back To Sunflower Marketing'}
         </h2>
         <p className="text-center text-gray-500 mt-1">
           {isRegistering ? 'Register below to get started!' : 'Sign in to your account'}
