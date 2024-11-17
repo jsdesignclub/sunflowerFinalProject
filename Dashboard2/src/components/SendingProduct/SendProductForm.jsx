@@ -40,6 +40,7 @@ const SendProductForm = () => {
             ProductName: product.ProductName,
             Quantity: quantity,
             UnitPrice: product.UnitPrice,
+            FreeIssue: product.FreeIssue,
           },
         ]);
         setSelectedProductID('');
@@ -86,6 +87,7 @@ const SendProductForm = () => {
           InvoiceID: invoiceID,
           ProductID: item.ProductID,
           Quantity: item.Quantity,
+          FreeIssue: item.FreeIssue,
         })
       );
   
@@ -114,7 +116,9 @@ const SendProductForm = () => {
               <tr style="background-color: #f0f0f0;">
                 <th style="padding: 8px; border: 1px solid #ccc;">Product Name</th>
                 <th style="padding: 8px; border: 1px solid #ccc;">Quantity</th>
+                 <th style="padding: 8px; border: 1px solid #ccc;">Free Issue</th>
                 <th style="padding: 8px; border: 1px solid #ccc;">Unit Price</th>
+               
                 <th style="padding: 8px; border: 1px solid #ccc;">Total</th>
               </tr>
             </thead>
@@ -125,10 +129,12 @@ const SendProductForm = () => {
                     <tr>
                       <td style="padding: 8px; border: 1px solid #ccc;">${item.ProductName}</td>
                       <td style="padding: 8px; border: 1px solid #ccc;">${item.Quantity}</td>
+                      <td style="padding: 8px; border: 1px solid #ccc;">${item.FreeIssue}</td>
                       <td style="padding: 8px; border: 1px solid #ccc;">${item.UnitPrice}</td>
                       <td style="padding: 8px; border: 1px solid #ccc;">${(
                         parseFloat(item.UnitPrice) * parseFloat(item.Quantity)
                       ).toFixed(2)}</td>
+                      
                     </tr>`
                 )
                 .join('')}
@@ -255,6 +261,7 @@ const SendProductForm = () => {
                 <tr className="bg-blue-100">
                   <th className="py-2 px-4 border-b">Product Name</th>
                   <th className="py-2 px-4 border-b">Quantity</th>
+                  <th className="py-2 px-2 border-b">FreeIssue</th>
                   <th className="py-2 px-4 border-b">Price</th>
                   <th className="py-2 px-4 border-b">Total</th>
                   <th className="py-2 px-4 border-b">Actions</th>
@@ -265,6 +272,7 @@ const SendProductForm = () => {
                   <tr key={index} className="border-b">
                     <td className="py-2 px-4">{item.ProductName}</td>
                     <td className="py-2 px-4">{item.Quantity}</td>
+                    <td className="py-2 px-4">{item.FreeIssue}</td>
                     <td className="py-2 px-4">{item.UnitPrice}</td>
                     <td className="py-2 px-4">
                         { 

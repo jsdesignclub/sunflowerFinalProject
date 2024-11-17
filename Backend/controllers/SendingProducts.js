@@ -40,9 +40,9 @@ const addInvoice = async (req, res) => {
 
 const addProductToInvoice = async (req, res) => {
     try {
-        const { InvoiceID, ProductID, Quantity } = req.body;
-        const sql = 'INSERT INTO SendingProductDetails (InvoiceID, ProductID, Quantity) VALUES (?, ?, ?)';
-        const [result] = await pool.query(sql, [InvoiceID, ProductID, Quantity]);
+        const { InvoiceID, ProductID, Quantity,FreeIssue } = req.body;
+        const sql = 'INSERT INTO SendingProductDetails (InvoiceID, ProductID, Quantity,freeIssue) VALUES (?, ?, ?,?)';
+        const [result] = await pool.query(sql, [InvoiceID, ProductID, Quantity,FreeIssue]);
         res.status(201).json({ message: 'Product added successfully' });
     } catch (err) {
         console.error('Error adding product:', err.message);
