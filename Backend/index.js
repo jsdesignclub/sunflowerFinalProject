@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes'); // Import user routes
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 
 const app = express();
 const port = process.env.PORT || 5000;
