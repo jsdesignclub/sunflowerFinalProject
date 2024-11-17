@@ -106,7 +106,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Transactions',
 		path: '/transactions',
 		icon: <HiOutlineDocumentText />,
-		roles:['admin', 'sales', 'customer'],
+		roles:['admin', 'salesrep', 'customer'],
 		subMenu: [
 			
 			{ key: 'sub5', label: 'Add Product Main stock', path: '/AddReceiptForm', icon: <AiFillAppstore /> },
