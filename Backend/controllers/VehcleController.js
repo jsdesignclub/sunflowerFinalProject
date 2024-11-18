@@ -23,7 +23,8 @@ const getVehicles = async (req, res) => {
 // add vehicle      
 
 const addVehicle = async (req, res) => {
-    const { VehicleNumber, VehicleName } = req.body;    
+    const { VehicleNumber, VehicleName } = req.body; 
+    console.log("Received Vehicle Data:", req.body);   
     try {
                             const sql = `INSERT INTO vehicles (VehicleNumber, VehicleName) VALUES (?, ?)`;
             const [result] = await pool.query(sql, [VehicleNumber, VehicleName]);
