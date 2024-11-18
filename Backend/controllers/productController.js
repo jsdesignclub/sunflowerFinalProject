@@ -1,5 +1,6 @@
 // /controllers/userController.js
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');  // Import DB connection
 const { get } = require('../routes/userRoutes');
