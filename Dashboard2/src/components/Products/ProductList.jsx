@@ -10,7 +10,7 @@ const ProductList = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/products-list');
+                const response = await axios.get('http://sunflowerfinalproject-production.up.railway.app/api/products-list');
                 setProducts(response.data);
                 setLoading(false);
             } catch (error) {

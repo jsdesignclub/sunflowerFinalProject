@@ -3,7 +3,7 @@ const express = require('express');
 const { registerUser, loginUser, getUsers, deleteUser } = require('../controllers/userController');
 const { getCategories, addProducts,getProducts, addReceipt,getProductsList,getReceiptDetails,getReceiptsSummary } = require('../controllers/productController');
 const { getBranch,addInvoice,addProductToInvoice , getBranchDetails} = require('../controllers/SendingProducts');
-const { getVehicles } = require('../controllers/VehcleController');
+const { getVehicles,addVehicle } = require('../controllers/VehcleController');
 const {  addSalesRep, getAllSalesReps,CreateBill, getSalesRepByUsername } = require('../controllers/SalesRepController');
 const { addCustomer, getAllCustomers, getCustomerById } = require('../controllers/CustomerContraoller');
 const router = express.Router();
@@ -67,5 +67,8 @@ router.get('/sales-reps-by-username/:username', getSalesRepByUsername);
 
 // Get customer by ID Route     
 router.get('/customers/:id', getCustomerById);
+
+// add vehicle
+router.post('/add-vehicle', addVehicle);
 
 module.exports = router;

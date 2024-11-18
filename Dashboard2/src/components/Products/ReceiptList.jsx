@@ -12,7 +12,7 @@ const ReceiptList = () => {
     useEffect(() => {
         const fetchReceipts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/receiptsSummary');
+                const response = await axios.get('http://sunflowerfinalproject-production.up.railway.app/api/receiptsSummary');
                 setReceipts(response.data);
                 setLoading(false);
             } catch (error) {
@@ -27,7 +27,7 @@ const ReceiptList = () => {
     // Fetch details of a specific receipt
     const fetchReceiptDetails = async (receiptID) => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/receiptsDetails/${receiptID}`);
+            const response = await axios.get(`http://sunflowerfinalproject-production.up.railway.app/api/receiptsDetails/${receiptID}`);
             setReceiptDetails(response.data);
           
         } catch (error) {

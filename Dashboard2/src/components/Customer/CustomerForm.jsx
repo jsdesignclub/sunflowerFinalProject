@@ -14,7 +14,7 @@ const CustomerForm = () => {
     useEffect(() => {
         const fetchBranches = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/branches');
+                const response = await axios.get('http://sunflowerfinalproject-production.up.railway.app/api/branches');
                 setBranches(response.data);
             } catch (error) {
                 console.error('Error fetching branches:', error);
@@ -36,7 +36,7 @@ const CustomerForm = () => {
         };
 
         try {
-            await axios.post('http://localhost:5000/api/add-customer', customerData);
+            await axios.post('http://sunflowerfinalproject-production.up.railway.app/api/add-customer', customerData);
             alert('Customer added successfully');
             // Clear form fields
             setFirstName('');

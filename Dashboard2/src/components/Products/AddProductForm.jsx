@@ -13,7 +13,7 @@ const AddProductForm = () => {
 
     // Fetch categories when the component mounts
     useEffect(() => {
-        axios.get('http://localhost:5000/api/categories')
+        axios.get('http://sunflowerfinalproject-production.up.railway.app/api/categories')
             .then((response) => {
                 setCategories(response.data); // Set categories
             })
@@ -32,7 +32,7 @@ const AddProductForm = () => {
 
         try {
             // Send product data to the backend, with newCategoryName if needed
-            const response = await axios.post('http://localhost:5000/api/products', {
+            const response = await axios.post('http://sunflowerfinalproject-production.up.railway.app/api/products', {
                 ProductName: productName,
                 CategoryId: isNewCategory ? null : categoryId, // Send null if adding a new category
                 NewCategoryName: isNewCategory ? newCategoryName : null, // Only send newCategoryName if adding a new category

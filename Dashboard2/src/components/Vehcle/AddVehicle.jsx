@@ -9,7 +9,7 @@ const AddVehicle = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/vehicles', {
+            const response = await axios.post('https://sunflowerfinalproject-production.up.railway.app/api/add-vehicle', {
                 vehicleNumber,
                 vehicleName,
             });
