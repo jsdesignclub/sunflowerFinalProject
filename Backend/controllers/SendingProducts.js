@@ -41,15 +41,42 @@ const addInvoice = async (req, res) => {
 
 const addProductToInvoice = async (req, res) => {
     try {
-        const { InvoiceID, ProductID, Quantity,FreeIssue } = req.body;
-        const sql = 'INSERT INTO SendingProductDetails (InvoiceID, ProductID, Quantity,freeIssue) VALUES (?, ?, ?,?)';
-        const [result] = await pool.query(sql, [InvoiceID, ProductID, Quantity,FreeIssue]);
+        const { InvoiceID, ProductID, Quantity, FreeIssue } = req.body;
+
+        // Step 1: Check the available balance in the Inventory table
+        const checkStockSql = 'SELECT QuantityInStock FROM Inventory WHERE ProductID = ?';
+        const [stockResult] = await pool.query(checkStockSql, [ProductID]);
+
+        if (stockResult.length === 0) {
+            return res.status(404).json({ message: 'Product not found in inventory' });
+        }
+
+        const availableStock = stockResult[0].QuantityInStock;
+
+        // Step 2: Verify if there's enough stock
+        if (availableStock < Quantity) {
+            return res.status(400).json({
+                message: `Insufficient stock. Available balance: ${availableStock}`,
+            });
+        }
+
+        // Step 3: Proceed to insert the product into SendingProductDetails
+        const sql =
+            'INSERT INTO SendingProductDetails (InvoiceID, ProductID, Quantity, FreeIssue) VALUES (?, ?, ?, ?)';
+        const [result] = await pool.query(sql, [InvoiceID, ProductID, Quantity, FreeIssue]);
+
+        // Step 4: Deduct the stock from Inventory
+        const updateStockSql = 'UPDATE Inventory SET QuantityInStock = QuantityInStock - ? WHERE ProductID = ?';
+        await pool.query(updateStockSql, [Quantity, ProductID]);
+
         res.status(201).json({ message: 'Product added successfully' });
     } catch (err) {
         console.error('Error adding product:', err.message);
         res.status(500).json({ message: 'Error adding product', error: err.message });
     }
 };
+
+
 
 const getBranchDetails = async (req, res) => {
     try {
