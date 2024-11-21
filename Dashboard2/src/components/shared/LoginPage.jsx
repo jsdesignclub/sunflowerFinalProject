@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   async function handleLogin() {
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('http://sunflowerfinalproject-production.up.railway.app/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const LoginPage = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/register', { username, password, role });
+      const response = await axios.post('http://sunflowerfinalproject-production.up.railway.app/api/register', { username, password, role });
       alert('Registration successful! You can now log in.');
       setIsRegistering(false); // Switch back to login form
     } catch (error) {
