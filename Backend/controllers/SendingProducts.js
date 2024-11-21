@@ -66,8 +66,8 @@ const addProductToInvoice = async (req, res) => {
         const [result] = await pool.query(sql, [InvoiceID, ProductID, Quantity, FreeIssue]);
 
         // Step 4: Deduct the stock from Inventory
-        const updateStockSql = 'UPDATE Inventory SET QuantityInStock = QuantityInStock - ? WHERE ProductID = ?';
-        await pool.query(updateStockSql, [Quantity, ProductID]);
+        //const updateStockSql = 'UPDATE Inventory SET QuantityInStock = QuantityInStock - ? WHERE ProductID = ?';
+        //await pool.query(updateStockSql, [Quantity, ProductID]);
 
         res.status(201).json({ message: 'Product added successfully' });
     } catch (err) {
