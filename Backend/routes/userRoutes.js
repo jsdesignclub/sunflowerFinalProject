@@ -1,7 +1,7 @@
 // /routes/userRoutes.js
 const express = require('express');
 const { registerUser, loginUser, getUsers, deleteUser } = require('../controllers/userController');
-const { getCategories, addProducts,getProducts, addReceipt,getProductsList,getReceiptDetails,getReceiptsSummary } = require('../controllers/productController');
+const { getCategories, addProducts,getProducts, addReceipt,getProductsList,getReceiptDetails,getReceiptsSummary,getProductsByBranch } = require('../controllers/productController');
 const { getBranch,addInvoice,addProductToInvoice , getBranchDetails} = require('../controllers/SendingProducts');
 const { getVehicles,addVehicle } = require('../controllers/VehcleController');
 const {  addSalesRep, getAllSalesReps,CreateBill, getSalesRepByUsername } = require('../controllers/SalesRepController');
@@ -70,5 +70,9 @@ router.get('/customers/:id', getCustomerById);
 
 // add vehicle
 router.post('/add-vehicle', addVehicle);
+
+// get products by branch id
+router.get('/products-by-branch/:branchId', getProductsByBranch);
+
 
 module.exports = router;
