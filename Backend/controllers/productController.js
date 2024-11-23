@@ -236,5 +236,32 @@ const addReceipt = async (req, res) => {
     }
 };
 
+const getProductsByBranch = async (req, res) => {
+  try {
+    const branchId = req.params.branchId;
+    const sql = `
+      SELECT 
+      p.ProductID,
+      p.ProductName, 
+      p.UnitPrice,
+      SUM(spd.Quantity) AS TotalQuantity
+      FROM Branch b 
+      JOIN SendingInvoice si ON b.BranchID = si.BranchID 
+      JOIN SendingProductDetails spd ON si.InvoiceID = spd.InvoiceID 
+      JOIN products p ON spd.ProductID = p.ProductID 
+      WHERE b.BranchID = ?
+      GROUP BY p.productName
+    `;    
+    const [rows] = await pool.query(sql, [branchId]);
+    res.status(200).json(rows);
+    console.log("products:", branchId);
+    console.log("products:", rows);
+  } catch (error) {
+    console.error('Error fetching products:', error.message); 
+    res.status(500).json({ message: 'Error fetching products', error: error.message });
+  }
+};
 
-module.exports = { getCategories, addProducts , getProducts, addReceipt, getProductsList, getReceiptsSummary, getReceiptDetails};
+
+
+module.exports = { getCategories, addProducts , getProducts, addReceipt, getProductsList, getReceiptsSummary, getReceiptDetails, getProductsByBranch};
