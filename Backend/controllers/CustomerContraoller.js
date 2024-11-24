@@ -46,4 +46,20 @@ const getCustomerById = async (req, res) => {
     }
 };
 
-module.exports = { addCustomer,getAllCustomers, getCustomerById };                                                           
+// get customer by branch id
+const getCustomersByBranch = async (req, res) => {
+    const { branchId } = req.params;
+    console.log("Received branchId:", branchId);
+    try {
+        const sql = `SELECT * FROM Customer WHERE BranchID = ?`;
+        const [customers] = await pool.query(sql, [branchId]);
+        res.status(200).json(customers);  
+        console.log("Fetched customers by branch:", customers);      
+    } catch (error) {
+        console.error("Error fetching customers by branch:", error);
+        res.status(500).json({ message: "Error fetching customers by branch", error: error.message });      
+    }
+};
+
+
+module.exports = { addCustomer,getAllCustomers, getCustomerById , getCustomersByBranch }; 
