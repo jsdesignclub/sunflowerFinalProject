@@ -5,7 +5,7 @@ const { getCategories, addProducts,getProducts, addReceipt,getProductsList,getRe
 const { getBranch,addInvoice,addProductToInvoice , getBranchDetails} = require('../controllers/SendingProducts');
 const { getVehicles,addVehicle } = require('../controllers/VehcleController');
 const {  addSalesRep, getAllSalesReps,CreateBill, getSalesRepByUsername } = require('../controllers/SalesRepController');
-const { addCustomer, getAllCustomers, getCustomerById } = require('../controllers/CustomerContraoller');
+const { addCustomer, getAllCustomers, getCustomerById, getCustomersByBranch } = require('../controllers/CustomerContraoller');
 const router = express.Router();
 
 // User Registration Route
@@ -74,5 +74,7 @@ router.post('/add-vehicle', addVehicle);
 // get products by branch id
 router.get('/products-by-branch/:branchId', getProductsByBranch);
 
+// get customers by branch id   
+router.get('/getCustomersByBranch/:branchId', getCustomersByBranch);
 
 module.exports = router;
